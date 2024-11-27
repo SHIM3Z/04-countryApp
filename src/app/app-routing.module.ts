@@ -5,10 +5,10 @@ import { AbourPageComponent } from './shared/pages/abourPage/abourPage.component
 import { ContactPageComponent } from './shared/pages/contactPage/contactPage.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: HomePageComponent,
-  },
+  // {
+  //   path: '',
+  //   component: HomePageComponent,
+  // },
   {
     path: 'about',
     component: AbourPageComponent,
@@ -18,12 +18,13 @@ const routes: Routes = [
     component: ContactPageComponent,
   },
   {
-    path: 'countries',
-    component: ContactPageComponent,
+    path: 'country',
+    loadChildren: () =>
+      import('./countries/countries.module').then((m) => m.CountriesModule),
   },
   {
     path: '**',
-    redirectTo: '',
+    redirectTo: 'country',
   },
 ];
 
