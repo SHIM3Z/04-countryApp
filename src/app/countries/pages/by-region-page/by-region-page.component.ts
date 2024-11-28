@@ -8,9 +8,14 @@ import { CountriesService } from '../../services/countries.service';
   styleUrl: './by-region-page.component.css',
 })
 export class ByRegionPageComponent {
+  public isLoading: boolean = false;
   public contri: Country[] = [];
   constructor(private contriserv: CountriesService) {}
   searchbyRegion(term: string) {
-    this.contriserv.searchRegion(term).subscribe((res) => (this.contri = res));
+    this.isLoading = true;
+    this.contriserv.searchRegion(term).subscribe((res) => {
+      this.contri = res;
+      this.isLoading = false;
+    });
   }
 }
